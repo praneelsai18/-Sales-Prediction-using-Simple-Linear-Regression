@@ -44,4 +44,5 @@ new_ad = [[150]]
 predicted_sales = model.predict(new_ad)
 print(f"\nIf Advertising = 150, Predicted Sales = {predicted_sales[0]:.2f}")
 
-print("\n✅ Project Completed Successfully!")
+
+print("\n Project Completed Successfully!")
