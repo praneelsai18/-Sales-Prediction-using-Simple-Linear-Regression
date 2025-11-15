@@ -1,121 +1,119 @@
-# Sales Prediction using Simple Linear Regression
+# Mini Project 2 — Sales Prediction using Simple Linear Regression
 
-##  Overview
-This mini project demonstrates the application of **Simple Linear Regression** to analyze and predict the relationship between **Advertising Budget** and **Product Sales** for a dietary weight-control product.  
-The project uses Python’s **Scikit-Learn** library to train, test, and evaluate a regression model.
+## Overview
+This mini project demonstrates the application of **Simple Linear Regression** to analyze the relationship between **Advertising Budget** and **Sales** for a dietary weight control product.  
+The model is implemented using Python and Scikit-Learn and shows how advertising expenditure influences sales performance.
 
-This is a standalone project and does not depend on any other datasets or mini projects.
+This project also includes a regression line visualization using Matplotlib.
 
 ---
 
-##  Objectives
-- Understand the working of Simple Linear Regression  
-- Explore how advertising expenditure impacts sales  
-- Train and evaluate a regression model using Scikit-Learn  
-- Calculate evaluation metrics such as **Mean Squared Error (MSE)** and **R² Score**  
-- Predict sales for new advertising values  
+## Objectives
+- Understand the concept of Simple Linear Regression  
+- Load and explore a sample advertising dataset  
+- Split data into training and testing sets  
+- Train a Linear Regression model  
+- Evaluate the model using MSE and R² Score  
+- Visualize the regression line  
+- Predict sales based on advertising budget  
 
 ---
 
 ## Project Structure
+mini_project_2_sales_prediction/
+│
+├── main.py # Linear Regression code (this project)
+├── requirements.txt # Required libraries
+└── README.md # Project documentation (this file)
 
-mini_project_2_sales_prediction/ │ ├── main.py                # Model training and evaluation code ├── requirements.txt       # Required Python libraries └── model/                 # Saved trained model (auto-created)
+yaml
+Copy code
 
 ---
 
-##  Technologies Used
+## Technologies Used
 - Python  
 - Pandas  
 - NumPy  
 - Scikit-Learn  
-- Joblib  
+- Matplotlib  
 
 ---
 
-##  Installation & Setup
+## How to Run the Project
 
-### Step 1 — Install required libraries
+### Step 1 — Install dependencies
 ```bash
 pip install -r requirements.txt
-
-Step 2 — Run the project
-
+Step 2 — Run the Python script
+bash
+Copy code
 python main.py
+Dataset Description
+This project uses a sample dataset containing two columns:
 
-A trained Linear Regression model will be created and saved in the model/ folder.
+Feature	Description
+Advertising	Money spent on promoting the product
+Sales	Units sold
 
+Example data used in this project:
 
----
+makefile
+Copy code
+Advertising: [230, 44, 17, 151, ...]
+Sales: [22, 10, 6, 16, ...]
+You may also replace this with your own CSV dataset if needed.
 
- Model Training
+Model Training
+The code trains a Linear Regression model using:
 
-The model learns the relationship:
-
-Sales = b_0 + b_1 \times Advertising
-
+python
+Copy code
+model.fit(X_train, y_train)
+The model learns the equation:
+Sales=m×Advertising+c
 Where:
+m = slope (coefficient)
+c = intercept
 
-Advertising → independent variable
+Evaluation Metrics
+The model is evaluated using:
 
-Sales → dependent variable
+✔ Mean Squared Error (MSE)
+Measures how far predictions are from actual values.
 
+✔ R² Score
+Indicates how well the model fits the data (range: 0–1).
 
+Both metrics are printed in the terminal.
 
----
+Visualization
+The project generates a scatter plot of actual sales vs. advertising budget, along with the best-fit regression line.
 
- Evaluation Metrics
+This helps visually understand how sales increase with advertising efforts.
 
-After training, the model is evaluated using:
+Sample Output Log
+mathematica
+Copy code
+Dataset Loaded Successfully
+Training and Testing Split Done!
+Model Training Completed!
+Coefficient (Slope): 0.075
+Intercept: 4.52
 
-Metric	Description
+Model Evaluation:
+Mean Squared Error (MSE): 1.32
+R² Score: 0.94
 
-Mean Squared Error (MSE)	Measures average squared difference between actual & predicted values
-R² Score	Indicates how well the model fits the data (closer to 1 = better fit)
+Program Completed Successfully!
+Future Enhancements
+Add CSV support for large datasets
 
+Add multiple regression with more features
 
+Save model using joblib
 
----
+Deploy using Streamlit
 
- Sample Output
-
-Dataset Loaded Successfully!
-
-Model training completed!
-Trained model saved successfully.
-
-Model Evaluation Results:
-Mean Squared Error (MSE): 0.2480
-R-squared (R2 Score): 0.9874
-
-Sales = -1.33 + 0.24 * Advertising
-
-Predicted Sales for Advertising = 150 → 34.79
-
- Project Completed Successfully!
-
-
----
-
- Saved Model
-
-model/
-└── linear_regression_sales.joblib
-
-This allows you to load and use the model later without retraining.
-
-
----
-
- Conclusion
-
-The project successfully demonstrates how Simple Linear Regression can be used to predict product sales based on advertising investment. The model achieved a strong R² score, indicating a clear positive correlation between advertising and sales. This project provides practical understanding of regression analysis using Python and Scikit-Learn.
-
-
----
-
- Author
-
+Author
 Sai Praneel
-Department of Computer Science & Engineering
-
----
