@@ -1,48 +1,55 @@
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-import joblib
-import os
+import matplotlib.pyplot as plt
+
 
 data = {
-    'Advertising': [50, 60, 70, 80, 90, 100, 110, 120, 130, 140],
-    'Sales': [12, 14, 17, 18, 21, 22, 25, 28, 30, 32]
+    'Advertising': [230, 44, 17, 151, 180, 8, 57, 120, 90, 200],
+    'Sales': [22, 10, 6, 16, 18, 4, 9, 14, 12, 20]
 }
+
 df = pd.DataFrame(data)
-print("Dataset Loaded Successfully!\n")
-print(df.head())
+
+print("Dataset Loaded Successfully")
+print(df.head())  
 
 X = df[['Advertising']]  
 y = df['Sales']          
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+print("\nTraining and Testing Split Done!")
 
 model = LinearRegression()
 model.fit(X_train, y_train)
-print("\nModel training completed!")
 
-os.makedirs("model", exist_ok=True)
-joblib.dump(model, "model/linear_regression_sales.joblib")
-print("Trained model saved successfully.\n")
+print("\nModel Training Completed!")
+print("Coefficient (Slope):", model.coef_[0])
+print("Intercept:", model.intercept_)
 
 y_pred = model.predict(X_test)
-print("Predictions on test data:", y_pred)
 
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-print("\nModel Evaluation Results:")
-print(f"Mean Squared Error (MSE): {mse:.4f}")
-print(f"R-squared (R2 Score): {r2:.4f}")
+print("\nModel Evaluation:")
+print("Mean Squared Error (MSE):", mse)
+print("R² Score:", r2)
 
-print("\nThe linear relationship can be represented as:")
-print(f"Sales = {model.intercept_:.2f} + {model.coef_[0]:.2f} * Advertising")
+plt.scatter(df['Advertising'], df['Sales'], color='blue', label='Actual Data')
+plt.plot(df['Advertising'], model.predict(df[['Advertising']]), color='red', label='Regression Line')
 
-new_ad = [[150]]
-predicted_sales = model.predict(new_ad)
-print(f"\nIf Advertising = 150, Predicted Sales = {predicted_sales[0]:.2f}")
+plt.title("Simple Linear Regression: Sales vs Advertising")
+plt.xlabel("Advertising Budget")
+plt.ylabel("Sales")
+plt.legend()
+plt.show()
 
+print("\nProgram Completed Successfully!")
 
-print("\n Project Completed Successfully!")
